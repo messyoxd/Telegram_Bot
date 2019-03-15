@@ -68,12 +68,15 @@ class Creuza:
     def main(self):
         # last_update_id = None
         while True:
-            if unittest.main(exit=False):
+            unittest.main(exit=False)
+            print(shalaxasca)
+            if shalaxasca:
                 # self.sendMessage(self.channel_id,"Já abriu a pré venda de Vingadores?\nainda não fera, foi mal")
-                self.sendMessage(self.chat_id,"Já abriu a pré venda de Vingadores?\nainda não fera, foi mal")
+                # self.sendMessage(self.chat_id,"Já abriu a pré venda de Vingadores?\nainda não fera, foi mal")
+                self.sendMessage(self.channel_id,"Já abriu a pré venda de chorar-de-rir(é o teste pro vingadores)?\nainda não fera, foi mal")
             else:
-                self.sendMessage(self.channel_id,"ABRIU!!!!!!!!!!!!!!!!!!!!")
-            time.sleep(60)
+                self.sendMessage(self.channel_id,"A pré-estréia abriu -> https://www.ingresso.com/fortaleza/home/filmes/chorar-de-rir")
+            time.sleep(15*60)
             # updates = self.getUpdates(last_update_id)
             # print(updates)
             # if len(updates['result']) > 0:
