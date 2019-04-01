@@ -9,9 +9,8 @@ import time
 import os
 import datetime
 
-shalaxasca = False
 
-site = "https://www.ingresso.com/fortaleza/home/filmes/shazam"
+site = "https://www.ingresso.com/fortaleza/home/filmes/vingadores-ultimato"
 #site = "https://www.ingresso.com/fortaleza/home/filmes/dumbo"
 
 # from selenium.webdriver.common.alert import Alert
@@ -116,17 +115,28 @@ class PythonOrgSearch(unittest.TestCase):
         #     return None
         try:
             elem = driver.find_element_by_xpath('//div[@style="display:none;"][@class="angular-dates"]')
+            PythonOrgSearch.results["shalaxasca"] = 0
+            print(PythonOrgSearch.results["shalaxasca"])
+            return None
             # print("ok7")
-            PythonOrgSearch.results["shalaxasca"] = False
+        except Exception as e:
+            print(e)
+            # print("not ok7")
+            # time.sleep(5)
+
+        try:
+            elem = driver.find_element_by_xpath('//a[@href="https://www.ingresso.com/fortaleza/home/cinemas/uci-kinoplex-iguatemi-fortaleza"]')
+            # print("ok7")
+            PythonOrgSearch.results["shalaxasca"] = 2
             print("aaaaaaaaaaaaaaaaaa")
             return None
         except Exception as e:
             print(e)
             # print("not ok7")
             # time.sleep(5)
-            PythonOrgSearch.results["shalaxasca"] = True
+            PythonOrgSearch.results["shalaxasca"] = 1
             # return None
-            print("n tava display none")
+            print("abriu, mas n tem no iguatemi")
             print(PythonOrgSearch.results["shalaxasca"])
             return None
         
@@ -210,25 +220,38 @@ class Creuza:
 
     def main(self):
         # last_update_id = None
+        ELIAS = 15
+        # time.sleep(ELIAS*60)
         while True:
-            # shalaxasca = False
-            unittest.main(exit=False)
-            print(PythonOrgSearch.results)
-            if not PythonOrgSearch.results["shalaxasca"]:
-                # self.sendMessage(self.channel_id,"Já abriu a pré venda de Vingadores?\nainda não fera, foi mal")
-                # self.sendMessage(self.chat_id,"Já abriu a pré venda de Vingadores?\nainda não fera, foi mal")
-                # self.sendMessage(self.chat_id,"n abriu n")                
-                self.setChatTitle(self.chat_id, (str(datetime.datetime.now())).split('.')[0])
-                # pass
-            else:
-                self.sendMessage(self.chat_id,"A pré-estréia abriu -> %s" % site)
-            time.sleep(15*60)
-            # updates = self.getUpdates(last_update_id)
-            # print(updates)
-            # if len(updates['result']) > 0:
-            #     last_update_id = self.getLastUpdateId(updates)+1
-            #     self.echoAll(updates)
-            
+            try:
+                # shalaxasca = False                
+                unittest.main(exit=False)
+                print(PythonOrgSearch.results)
+                if PythonOrgSearch.results["shalaxasca"] == 0:
+                    # self.sendMessage(self.channel_id,"Já abriu a pré venda de Vingadores?\nainda não fera, foi mal")
+                    # self.sendMessage(self.chat_id,"Já abriu a pré venda de Vingadores?\nainda não fera, foi mal")
+                    # self.sendMessage(self.chat_id,"n abriu n")                
+                    self.setChatTitle(self.chat_id, (str(datetime.datetime.now())).split('.')[0])
+                    # pass
+                elif PythonOrgSearch.results["shalaxasca"] == 1:
+                    ELIAS = 5
+                    self.sendMessage(self.chat_id,"abriu, mas n tem pro iguats -> %s" % site)
+                elif PythonOrgSearch.results["shalaxasca"] == 2:
+                    self.sendMessage(self.chat_id,"abriu CORNOS -> %s" % site)
+                    self.sendMessage(self.chat_id,"abriu CORNOS -> %s" % site)
+                    self.sendMessage(self.chat_id,"abriu CORNOS -> %s" % site)
+                    self.sendMessage(self.chat_id,"abriu CORNOS -> %s" % site)
+                    self.sendMessage(self.chat_id,"abriu CORNOS -> %s" % site)
+                    ELIAS = 0.01
+                print((str(datetime.datetime.now())).split('.')[0])
+                time.sleep(ELIAS*60)
+                # updates = self.getUpdates(last_update_id)
+                # print(updates)
+                # if len(updates['result']) > 0:
+                #     last_update_id = self.getLastUpdateId(updates)+1
+                #     self.echoAll(updates)
+            except:
+                self.sendMessage(self.chat_id,"Debug")
 
 # if __name__ == "__main__":
 bot = Creuza(".env")
